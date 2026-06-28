@@ -1,7 +1,9 @@
-
+using GameController;
+using Grid;
+using MainCamera;
+using Player;
 using UI;
 using Zenject;
-using Zenject.Asteroids;
 
 namespace Installer
 {
@@ -9,27 +11,23 @@ namespace Installer
     {
         public override void InstallBindings()
         {
-           /* CameraInstaller
-                .CameraInstaller
-                .Install(Container);*/
-
+            CameraInstaller
+                .Install(Container);
             UIRootInstaller
                 .Install(Container);
-
-
-
- 
-
-         /*   Container
+            GridInstaller.
+                Install(Container);
+            PlayerInstaller
+                .Install(Container);
+            Container
                 .Bind<GameController.GameController>()
                 .AsSingle()
                 .NonLazy();
-
             Container
                 .Bind<GameConfig>()
                 .FromScriptableObjectResource("GameConfig")
                 .AsSingle()
-                .NonLazy();*/
+                .NonLazy();
         }
     }
 }

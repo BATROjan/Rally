@@ -1,4 +1,6 @@
 using UI;
+using UI.GameUIWindow;
+using UI.UISelectWindow;
 using UI.UIStartWindow;
 using Zenject;
 
@@ -20,6 +22,8 @@ namespace UI
                 .NonLazy();
             
             UIStartWindowInstaller.Install(Container);
+            UISelecWindowInstaller.Install(Container);
+            GameUIWindowInstaller.Install(Container);
         }
     }
 }
