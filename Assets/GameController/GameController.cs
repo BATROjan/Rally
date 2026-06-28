@@ -12,6 +12,7 @@ namespace GameController
         private readonly GridController _gridController;
         
         private int playerCount;
+        private GridModel _gridModel;
         
         public GameController(
             PlayerController playerController,
@@ -28,8 +29,8 @@ namespace GameController
         public void StartGame()
         {
             _gridController.SpawnGrid();
-
-            _playerController.SpawnByCount(playerCount);
+            _gridModel = _gridController.GetGrid(0); //поменять если будет несколько карт
+            _playerController.SpawnByCount(_gridModel.PlayersPositions, _gridModel.PlayersRotations, playerCount);
         }
 
         public void SelectPlayerCount(int  count)

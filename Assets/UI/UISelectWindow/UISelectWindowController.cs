@@ -21,12 +21,15 @@
 
         private void UnSubscribeButtons()
         {
-            _uiService.Hide<UISelectWindowView>();
             
             foreach (var button in _uiSelectWindowView.Buttons)
             {
                 button.OnSelect -= _gameController.SelectPlayerCount;
-                button.OnClick -= _gameController.StartGame;
+                button.OnClick -= () =>
+                {
+                    _gameController.StartGame();
+                    _uiService.Hide<UISelectWindowView>();
+                };
             }
         }
 
@@ -35,7 +38,11 @@
             foreach (var button in _uiSelectWindowView.Buttons)
             {
                 button.OnSelect += _gameController.SelectPlayerCount;
-                button.OnClick += _gameController.StartGame;
+                button.OnClick += () =>
+                {
+                    _gameController.StartGame();
+                    _uiService.Hide<UISelectWindowView>();
+                };
             }
         }
     }

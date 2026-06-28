@@ -16,7 +16,7 @@ MonoBehaviour:
   - PlayersPositions:
     - {x: -7.39, y: 3.03, z: 0}
     - {x: -7.39, y: 1.74, z: 0}
-    PlayersRotations:
-    - {x: 0, y: 0, z: 90}
-    - {x: 0, y: 0, z: 90}
+    - {x: -5.39, y: 3.03, z: 0}
+    - {x: -5.39, y: 1.74, z: 0}
+    PlayersRotations: {x: 0, y: 0, z: 90}
     Prefab: {fileID: 872998306343990278, guid: f90de6c10355b9c42a792f450c8c1721, type: 3}

@@ -14,7 +14,7 @@ namespace Grid
 
         public GridModel GetGrid(int level)
         {
-            if (!_isInit)
+            if (!_isInit || _dictionaryOfLevels.Count != gridModels.Length)
             {
                 Init();
             }
@@ -43,7 +43,7 @@ namespace Grid
     public struct GridModel
     {
         public Vector3[] PlayersPositions;
-        public Vector3[] PlayersRotations;
+        public Vector3 PlayersRotations;
         public GameObject Prefab;
     }
 }

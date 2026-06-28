@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Grid;
+using UnityEngine;
 
 namespace Player
 {
@@ -15,16 +17,18 @@ namespace Player
             _playerPool = playerPool;
         }
 
-        public void SpawnByType(PlayerType type)
+        public void SpawnByType(Vector3 position, Vector3 rotation, PlayerType type)
         {
-            _playerPool.Spawn(_playerConfig.GetPlayer(type).sprite);
+            _playerPool.Spawn(_playerConfig.GetPlayer(type).sprite, position, rotation);
         }
-        public void SpawnByCount(int count)
+        public void SpawnByCount(Vector3[] positions, Vector3 rotation, int count)
         {
             List<PlayerModel> playerModels = _playerConfig.GetPlayeByCount(count);
+            int i = 0;
             foreach (var model in playerModels)
             {
-            _playerPool.Spawn(model.sprite);
+            _playerPool.Spawn(model.sprite,  positions[i], rotation);
+            i++;
             }
         }
     }
