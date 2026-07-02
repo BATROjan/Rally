@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d1ce891625247cda5a835c76524d5ad, type: 3}
-  m_Name: GameConfig
+  m_Script: {fileID: 11500000, guid: 48a6e07dafb14b5c9d10be9d60859716, type: 3}
+  m_Name: TriggerConfig
   m_EditorClassIdentifier: 
-  isPvE: 0
-  lapsCount: 1

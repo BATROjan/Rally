@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
-using Grid;
+using UI.GameUIWindow;
 using UnityEngine;
+using Zenject;
 
 namespace Player
 {
     public class PlayerController
     {
+        private readonly GameUIWindowController _gameUIWindowController;
         private readonly PlayerConfig _playerConfig;
-        private readonly PlayerView.Pool _playerPool;
-
+        private readonly PlayerView.Pool _playerPool; 
+        
+        private List<PlayerView> _playerViews = new ();
         public PlayerController(
+            GameUIWindowController gameUIWindowController,
             PlayerConfig playerConfig,
             PlayerView.Pool playerPool)
         {
+            _gameUIWindowController = gameUIWindowController;
             _playerConfig = playerConfig;
             _playerPool = playerPool;
-        }
-
-        public void SpawnByType(Vector3 position, Vector3 rotation, PlayerType type)
-        {
-            _playerPool.Spawn(_playerConfig.GetPlayer(type).sprite, position, rotation);
         }
         public void SpawnByCount(Vector3[] positions, Vector3 rotation, int count)
         {
@@ -27,9 +27,16 @@ namespace Player
             int i = 0;
             foreach (var model in playerModels)
             {
-            _playerPool.Spawn(model.sprite,  positions[i], rotation);
-            i++;
+                var player = _playerPool.Spawn(model.playerType, model.sprite,  positions[i], rotation);
+                _playerViews.Add(player);
+                player.Joystick = _gameUIWindowController.GetJoysticks()[model.playerType];
+                _gameUIWindowController.SetActiveTooltip(player.Type);
+                i++;
             }
+        }
+        public List<PlayerView> GetPlayerViews()
+        {
+            return _playerViews;
         }
     }
 }

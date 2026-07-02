@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Trigger;
 using UnityEngine;
 
 namespace Grid
@@ -45,5 +46,6 @@ namespace Grid
         public Vector3[] PlayersPositions;
         public Vector3 PlayersRotations;
         public GameObject Prefab;
+        public TriggerModel[] TriggerModels;
     }
 }

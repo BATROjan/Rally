@@ -20,3 +20,28 @@ MonoBehaviour:
     - {x: -5.39, y: 1.74, z: 0}
     PlayersRotations: {x: 0, y: 0, z: 90}
     Prefab: {fileID: 872998306343990278, guid: f90de6c10355b9c42a792f450c8c1721, type: 3}
+    TriggerModels:
+    - Rosition: {x: -14, y: -4.24, z: 0}
+      Rotation: {x: 0, y: 0, z: 36.46}
+      Size: {x: 6.29, y: 1}
+      Id: 1
+    - Rosition: {x: -6.95, y: -5.13, z: 0}
+      Rotation: {x: 0, y: 0, z: 161}
+      Size: {x: 6.29, y: 1}
+      Id: 2
+    - Rosition: {x: 6.3, y: -8.81, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+      Size: {x: 6.29, y: 1}
+      Id: 3
+    - Rosition: {x: 14.71, y: -9.95, z: 0}
+      Rotation: {x: 0, y: 0, z: 9.37}
+      Size: {x: 6.29, y: 1}
+      Id: 4
+    - Rosition: {x: 16.97, y: 1.23, z: 0}
+      Rotation: {x: 0, y: 0, z: 558}
+      Size: {x: 6.29, y: 1}
+      Id: 5
+    - Rosition: {x: -8.62, y: 4.14, z: 0}
+      Rotation: {x: 0, y: 0, z: 90}
+      Size: {x: 6.29, y: 1}
+      Id: 6

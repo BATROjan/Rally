@@ -6,13 +6,14 @@ namespace GameController
 
     public class GameConfig: ScriptableObject
     {
+        public int LapsCount => lapsCount;
 
         public bool IsPvE
         {
             get => isPvE;
             set => isPvE = value;
         }
-
-        [SerializeField] private bool isPvE;
+        [SerializeField] private bool isPvE; 
+        [SerializeField] private int lapsCount;
     }
 }

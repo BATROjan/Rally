@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3948991805642445086}
   - component: {fileID: 8240395698452864142}
   - component: {fileID: 507857653680648791}
+  - component: {fileID: 2348443238228483713}
   m_Layer: 0
   m_Name: PlayerView
   m_TagString: Untagged
@@ -134,7 +135,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd116fbf09f4dc18f0bc061469fe914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 2348443238228483713}
   playerSpriteRenderer: {fileID: 5514798102990403435}
+  _rigidbody2D: {fileID: 27570755529108392}
+--- !u!114 &2348443238228483713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777709855434602600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2cfe9f0d6d47afa70faee50ee312bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 27570755529108392}
+  _joystick: {fileID: 0}
 --- !u!1 &5809971974038745221
 GameObject:
   m_ObjectHideFlags: 0

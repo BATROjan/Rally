@@ -10,6 +10,14 @@ namespace UI.GameUIWindow
                 .Bind<GameUIWindowController>()
                 .AsSingle()
                 .NonLazy();
+            Container
+                .BindMemoryPool<PlayerTooltipView, PlayerTooltipView.Pool>()
+                .FromComponentInNewPrefabResource("PlayerTooltip");
+            Container
+                .Bind<PlayerTooltipConfig>()
+                .FromScriptableObjectResource("PlayerTooltipConfig")
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

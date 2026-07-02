@@ -1,4 +1,6 @@
-﻿namespace UI.UISelectWindow
+﻿using UI.GameUIWindow;
+
+namespace UI.UISelectWindow
 {
     public class UISelectWindowController
     {
@@ -21,7 +23,7 @@
 
         private void UnSubscribeButtons()
         {
-            
+            _uiService.Show<GameUIWindowView>();
             foreach (var button in _uiSelectWindowView.Buttons)
             {
                 button.OnSelect -= _gameController.SelectPlayerCount;

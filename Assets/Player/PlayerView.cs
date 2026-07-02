@@ -1,4 +1,7 @@
-﻿using Grid;
+﻿using System;
+using Grid;
+using Terresquall;
+using Trigger;
 using UnityEngine;
 using Zenject;
 
@@ -6,21 +9,41 @@ namespace Player
 {
     public class PlayerView : MonoBehaviour
     {
-        public SpriteRenderer PlayerSpriteRenderer => playerSpriteRenderer;
+        public Action<PlayerView, int> OnTriggerPass;
+        public PlayerType Type => _type;
+        public VirtualJoystick Joystick
+        {
+            set => playerMovement.Joystick = value;
+        }
+
+        [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private SpriteRenderer playerSpriteRenderer;
+        [SerializeField] private Rigidbody2D rigidbody2D;
+        [SerializeField] private PlayerType _type;
         
-        private void ReInit(Sprite sprite, Vector3 position, Vector3 rotation, PlayerView item)
+        private void ReInit(PlayerType type, Sprite sprite, Vector3 position, Vector3 rotation, PlayerView item)
         {
            playerSpriteRenderer.sprite = sprite;
            transform.position = position;
            transform.rotation = Quaternion.Euler(rotation);
+           _type = type;
         }
-        public class Pool : MonoMemoryPool<Sprite,Vector3, Vector3, PlayerView>
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            protected override void Reinitialize(Sprite sprite, Vector3 position, Vector3 rotation, PlayerView item)
+            var trigger = other.GetComponent<TriggerView>();
+            if (trigger)
             {
-                base.Reinitialize(sprite, position, rotation, item);
-                item.ReInit(sprite, position, rotation, item);
+                OnTriggerPass?.Invoke(this, trigger.GetID());
+            }
+        }
+
+        public class Pool : MonoMemoryPool<PlayerType, Sprite,Vector3, Vector3, PlayerView>
+        {
+            protected override void Reinitialize(PlayerType type, Sprite sprite, Vector3 position, Vector3 rotation, PlayerView item)
+            {
+                base.Reinitialize(type, sprite, position, rotation, item);
+                item.ReInit(type, sprite, position, rotation, item);
             }
         }
     }

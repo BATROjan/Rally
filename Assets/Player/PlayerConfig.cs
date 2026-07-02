@@ -67,6 +67,7 @@ namespace Player
     {
         public PlayerType playerType;
         public Sprite sprite;
+        public Color color;
     }
 
     public enum PlayerType

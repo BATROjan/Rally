@@ -2,6 +2,7 @@ using GameController;
 using Grid;
 using MainCamera;
 using Player;
+using Trigger;
 using UI;
 using Zenject;
 
@@ -19,10 +20,11 @@ namespace Installer
                 Install(Container);
             PlayerInstaller
                 .Install(Container);
-            Container
-                .Bind<GameController.GameController>()
-                .AsSingle()
-                .NonLazy();
+            TriggerInstaller
+                .Install(Container);
+            GameControllerInstaller
+                .Install(Container);
+            
             Container
                 .Bind<GameConfig>()
                 .FromScriptableObjectResource("GameConfig")
