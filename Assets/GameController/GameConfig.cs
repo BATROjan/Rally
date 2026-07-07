@@ -7,6 +7,8 @@ namespace GameController
     public class GameConfig: ScriptableObject
     {
         public int LapsCount => lapsCount;
+        public float AddSeconds => addSeconds;
+        public float StartSeconds => startSeconds;
 
         public bool IsPvE
         {
@@ -15,5 +17,7 @@ namespace GameController
         }
         [SerializeField] private bool isPvE; 
         [SerializeField] private int lapsCount;
+        [SerializeField] private float addSeconds;
+        [SerializeField] private float startSeconds;
     }
 }

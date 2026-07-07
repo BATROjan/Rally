@@ -1,20 +1,18 @@
-﻿using UI.UIStartWindow;
-
-namespace UI.UIWinWindow
+﻿namespace UI.UIWinWindow
 {
     public class UIWinWindowController
     {
         private readonly IUIService _uiService;
-        private UIStartWindowView _uiStartWindow;
+        private UIWinWindowView _uiWinWindowView;
         
         UIWinWindowController(
             IUIService uiService)
         {
             _uiService = uiService;
-            _uiStartWindow = _uiService.Get<UIStartWindowView>();
+            _uiWinWindowView = _uiService.Get<UIWinWindowView>();
             
-            _uiStartWindow.ShowAction += Show;
-            _uiStartWindow.HideAction += UnSubscribeButtons;
+            _uiWinWindowView.ShowAction += Show;
+            _uiWinWindowView.HideAction += UnSubscribeButtons;
         }
 
         private void UnSubscribeButtons()
@@ -25,7 +23,11 @@ namespace UI.UIWinWindow
         private void Show()
         {
             
-            
+        }
+
+        public void SetText( string text)
+        {
+            _uiWinWindowView.WinText.text = text;
         }
     }
 }

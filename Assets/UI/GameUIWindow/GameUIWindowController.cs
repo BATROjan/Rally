@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using GameController;
 using Player;
 using Terresquall;
 using UnityEngine;
@@ -43,6 +42,11 @@ namespace UI.GameUIWindow
         public void UpdateText(PlayerView view, int lapCount)
         {
             _playerTooltipViews[view.Type].PlayerScore.text = lapCount.ToString();
+        }
+
+        public void UpdateTimerText(float time)
+        {
+            _gameUIWindowView.TimerText.text = time.ToString("F2");
         }
 
         public Dictionary<PlayerType, VirtualJoystick> GetJoysticks()

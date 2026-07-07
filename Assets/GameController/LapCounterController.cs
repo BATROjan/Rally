@@ -34,5 +34,11 @@ namespace GameController
             _playerLapParts[playerView]++;
             OnLapPassed?.Invoke(playerView, _playerLapParts[playerView]);
         }
+
+        public int GetPlayerLap(PlayerView playerView)
+        {
+            return _playerLapParts[playerView];
+            
+        }
     }
 }

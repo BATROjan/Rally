@@ -18,6 +18,10 @@ namespace GameController
                 .Bind<LapCounterController>()
                 .AsSingle()
                 .NonLazy();
+            Container
+                .Bind<TimerController>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

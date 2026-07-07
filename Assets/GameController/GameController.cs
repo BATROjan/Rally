@@ -9,6 +9,7 @@ namespace GameController
 {
     public class GameController
     {
+        private readonly TimerController _timerController;
         private readonly LapCounterController _lapCounterController;
         private readonly GameUIWindowController _gameUIWindowController;
         private readonly PlayerController _playerController;
@@ -21,6 +22,7 @@ namespace GameController
         
         private UIWinWindowView _uiWinWindowView;
         public GameController(
+            TimerController timerController,
             LapCounterController lapCounterController,
             GameUIWindowController gameUIWindowController,
             PlayerController playerController,
@@ -28,6 +30,7 @@ namespace GameController
             IUIService uiService,
             GridController gridController)
         {
+            _timerController = timerController;
             _lapCounterController = lapCounterController;
             _gameUIWindowController = gameUIWindowController;
             _playerController = playerController;
@@ -45,7 +48,20 @@ namespace GameController
             _playerController.SpawnByCount(_gridModel.PlayersPositions, _gridModel.PlayersRotations, playerCount);
             
             _lapCounterController.SetUpLapCounterController();
-            _lapCounterController.OnLapPassed += CheckLaps;
+            if (playerCount > 1)
+            {
+                _lapCounterController.OnLapPassed += CheckLaps;
+            }
+            else
+            {
+                _timerController.SetTime(_gameConfig.AddSeconds,  _gameConfig.StartSeconds);
+                _timerController.ActiveTimer(true);
+                _playerController.GetPlayerViews()[0].OnTriggerPass += _timerController.AddTime;
+                _timerController.OnTimeLeft += () =>
+                {
+                    SetWinner(_playerController.GetPlayerViews()[0], _lapCounterController.GetPlayerLap(_playerController.GetPlayerViews()[0]).ToString());
+                };
+            }
             _lapCounterController.OnLapPassed += _gameUIWindowController.UpdateText;
         }
 
@@ -58,12 +74,17 @@ namespace GameController
         {
             if (lapCount >= _gameConfig.LapsCount)
             {
-                Debug.Log(playerView.Type +" is win");
-                string wintext = playerView.Type + " is win";
-                _uiWinWindowView.WinText.text = wintext;
-                _uiService.Show<UIWinWindowView>();
-                _uiService.Hide<GameUIWindowView>();
+                SetWinner(playerView, " is win");
             }
+        }
+
+        private void SetWinner(PlayerView playerView, string winText)
+        {
+            Debug.Log(playerView.Type + winText);
+            string wintext = playerView.Type + winText;
+            _uiWinWindowView.WinText.text = wintext;
+            _uiService.Show<UIWinWindowView>();
+            _uiService.Hide<GameUIWindowView>();
         }
     }
 }

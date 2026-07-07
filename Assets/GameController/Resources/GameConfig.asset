@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPvE: 0
   lapsCount: 1
+  addSeconds: 5
+  startSeconds: 10
