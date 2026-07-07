@@ -2,6 +2,7 @@
 using Player;
 using UI;
 using UI.GameUIWindow;
+using UI.UIWinWindow;
 using UnityEngine;
 
 namespace GameController
@@ -17,7 +18,8 @@ namespace GameController
         
         private int playerCount;
         private GridModel _gridModel;
-        GameUIWindowView gameUIWindowView;
+        
+        private UIWinWindowView _uiWinWindowView;
         public GameController(
             LapCounterController lapCounterController,
             GameUIWindowController gameUIWindowController,
@@ -32,7 +34,8 @@ namespace GameController
             _gameConfig = gameConfig;
             _uiService = uiService;
             _gridController = gridController;
-            gameUIWindowView = _uiService.Get<GameUIWindowView>();
+            
+            _uiWinWindowView = _uiService.Get<UIWinWindowView>();
         }
 
         public void StartGame()
@@ -56,6 +59,10 @@ namespace GameController
             if (lapCount >= _gameConfig.LapsCount)
             {
                 Debug.Log(playerView.Type +" is win");
+                string wintext = playerView.Type + " is win";
+                _uiWinWindowView.WinText.text = wintext;
+                _uiService.Show<UIWinWindowView>();
+                _uiService.Hide<GameUIWindowView>();
             }
         }
     }

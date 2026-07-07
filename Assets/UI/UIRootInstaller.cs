@@ -2,6 +2,7 @@ using UI;
 using UI.GameUIWindow;
 using UI.UISelectWindow;
 using UI.UIStartWindow;
+using UI.UIWinWindow;
 using Zenject;
 
 namespace UI
@@ -24,6 +25,7 @@ namespace UI
             UIStartWindowInstaller.Install(Container);
             UISelecWindowInstaller.Install(Container);
             GameUIWindowInstaller.Install(Container);
+            UIWinWindowInstaller.Install(Container);
         }
     }
 }
